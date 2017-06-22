@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import init from "./assets/classes/utils/init.js";
 import Coin from "./assets/classes/Coin.js";
 import Player from "./assets/classes/Player.js";
 
@@ -15,16 +16,12 @@ const Container = PIXI.Container,
 	resources = PIXI.loader.resources,
 	Sprite = PIXI.Sprite;
 
-const stage = new Container(), renderer = autoDetectRenderer(256, 256);
 let playerSprite, state;
 
-//Set the size to full screen
-renderer.view.style.position = "absolute";
-renderer.view.style.display = "block";
-renderer.autoResize = true;
-renderer.resize(windowWidth, windowHeight);
-
-document.body.appendChild(renderer.view);
+// Init the game
+const game = init();
+const stage = game.stage;
+const renderer = game.renderer;
 
 //Use Pixi's built-in `loader` object to load an image
 loader.add(playerImage).on("progress", loadProgressHandler).load(setup);

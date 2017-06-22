@@ -11,6 +11,21 @@ module.exports = {
 		filename: "[name].bundle.js",
 		publicPath: "/assets"
 	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: "babel-loader",
+					options: {
+						presets: ["env"]
+					}
+				}
+			}
+		]
+	},
+	devtool: "source-map",
 	devServer: {
 		contentBase: path.resolve(__dirname, "./src"),
 		open: true
